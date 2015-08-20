@@ -11,4 +11,8 @@ class StartApp {
 		System.out.println("test2");
 	}
   
+  @GET("subscribe")
+  def nodeSubscribe(){
+    
+  }
 }
