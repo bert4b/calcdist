@@ -21,9 +21,9 @@ function start(){
 
 	//db.exec("INSERT INTO cities VALUES ('Rome',2863223),('Paris',2249975),('Berlin',3517424),('Madrid',3041579)");
 
-	var res = db.exec("SELECT * FROM nodes");
+	//var res = db.exec("SELECT * FROM nodes");
 
-	writeToConsoleScreen(res);
+	//writeToConsoleScreen(res);
 
 
 	
