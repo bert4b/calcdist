@@ -4,7 +4,7 @@ var localDatabase=window;
 
 
 	createDb();
-	
+	fetchAll();
 })
 ()
 
@@ -58,19 +58,15 @@ function createDb(){
     }
 };
 
-function writeToConsoleScreen(info){
-	console.info(info);
-}
+
 
 function insert(){
 var nodes = [{
     name     : 'Node1',
-    id:1,
-    metadata : {
-        city    : 'Boston',
-        state   : 'MA',
-        country : 'USA'
-    }
+    id:1
+},{
+	name     : 'Node2',
+    id:2
 }];
 
 var osTableName="nodes";
@@ -93,10 +89,9 @@ if (localDatabase != null && localDatabase.db != null) {
 				var req;
 				var node = {};                   
 			   // create ten thousand records
-			   for (var loop = 0; loop < 10; loop++) {
-					node = {};
-					node.id = loop; 
-					node.name = 'Susan';
+			   for (var loop = 0; loop < 2; loop++) {
+					node = nodes[loop];
+					
 				
 					req = store.add(node);
 					req.onsuccess = function (ev) {
@@ -112,4 +107,29 @@ if (localDatabase != null && localDatabase.db != null) {
 
 
 
+}
+
+function fetchAll() {
+try {
+ 
+
+   if (localDatabase != null && localDatabase.db != null) {
+      var store = localDatabase.db.transaction("nodes").objectStore("nodes");
+
+      var request = store.openCursor();
+      request.onsuccess = function(evt) {
+         var cursor = evt.target.result;
+         if (cursor) {
+         	
+            var node = cursor.value;
+            var jsonStr = JSON.stringify(node);
+           writeToConsoleScreen(jsonStr);
+            cursor.continue();
+         }
+      };
+   }
+}
+catch(e){
+   console.log(e);
+}
 }
