@@ -3,14 +3,6 @@
 <welcome-file-list>
     <welcome-file>index.html</welcome-file>
 </welcome-file-list>
-  <display-name>Archetype Created Web Application</display-name>
-  <servlet>
-   
-    <servlet-name>StaticServlet</servlet-name>
-   
-</servlet>
-   <servlet-mapping>
-            <servlet-name>StaticServlet</servlet-name>
-            <url-pattern>/*</url-pattern>
-    </servlet-mapping>
+  <display-name>cb-client</display-name>
+
 </web-app>

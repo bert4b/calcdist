@@ -5,7 +5,7 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 
 @Path("info")
-class StartApp {
+class Information {
   
   @Path("info")
   @GET

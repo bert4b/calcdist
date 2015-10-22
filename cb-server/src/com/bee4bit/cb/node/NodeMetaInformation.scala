@@ -1,6 +1,5 @@
 package com.bee4bit.cb.node
 
-object NodeBase {
-  var uuid="3"
+class NodeMetaInformation {
   
 }

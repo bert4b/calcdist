@@ -25,9 +25,9 @@ function start(){
 	//ff();
 	
 	require(['node_modules/restful.js/dist/restful.standalone.js'],function(restful){
-		var resource = restful('http://localhost:9080/rest/info', fetchBackend(fetch));
+		var resource = restful('http://localhost:9080/cb-server/rest/connect', fetchBackend(fetch));
 
-		resource.all('info').getAll().then(function(categories) {
+		resource.all('login').getAll().then(function(categories) {
 		    var articlePromises = categories.map(function(category) {
 		        if (category.status() !== 200) {
 		            throw new Error('Invalid response');
