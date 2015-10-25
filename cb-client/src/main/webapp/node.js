@@ -26,17 +26,18 @@ function start(){
 	
 	require(['node_modules/restful.js/dist/restful.standalone.js'],function(restful){
 		var resource = restful('http://localhost:9080/cb-server/rest/connect', fetchBackend(fetch));
+		resource.custom('login').get().then(function(response){
+			riteToConsoleScreen(response);
+		});
+		resource.one('login',1).get().then(function(response) {
+			writeToConsoleScreen(response);
+			
+			
+			writeToConsoleScreen(response.body());
 
-		resource.all('login').getAll().then(function(categories) {
-		    var articlePromises = categories.map(function(category) {
-		        if (category.status() !== 200) {
-		            throw new Error('Invalid response');
-		        }
-		        category.data(); // will be the data returned by our API
-		        // category is an entity
-		        // that means you can chain it with other calls
-		        return category.one('articles', 2).get();
-		    });
+		  const article = response.body().data();
+			writeToConsoleScreen(article.info);
+		   
 		});
 		
 	});
