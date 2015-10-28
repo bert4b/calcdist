@@ -10,7 +10,6 @@ function fetchBackend(fetch){
 }
 
 function start(){
-
 	
 	require(['node_modules/restful.js/dist/restful.standalone.js'],function(restful){
 		var resource = restful('http://localhost:9080/cb-server/rest/connect', fetchBackend(fetch));
@@ -36,7 +35,6 @@ function start(){
 }
 
 function ff(){
-//var Promise = require('es6-promise').Promise;
 	
 	const api = restful('http://localhost:9080/rest/connect', fetchBackend(fetch));
 	const articlesCollection = api.all('login');
