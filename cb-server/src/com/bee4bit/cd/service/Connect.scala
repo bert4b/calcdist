@@ -18,6 +18,6 @@ class Connect {
   def nodeSubscribe(@PathParam("id")identifier:String):String={
    
     dsManager.addNode(new Node(identifier))
-    "{\"info\":\"test\"}"
+    "{\"dbversion\":1}"
   } 
 }
