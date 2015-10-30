@@ -14,7 +14,7 @@ function start(){
 	require(['node_modules/restful.js/dist/restful.standalone.js'],function(restful){
 		var resource = restful('http://localhost:9080/cb-server/rest/connect', fetchBackend(fetch));
 		resource.custom('login').get().then(function(response){
-			riteToConsoleScreen(response);
+			writeToConsoleScreen(response);
 		});
 		resource.one('login',1).get().then(function(response) {
 			writeToConsoleScreen(response);

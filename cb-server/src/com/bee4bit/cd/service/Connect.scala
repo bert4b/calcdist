@@ -18,6 +18,7 @@ class Connect {
   def nodeSubscribe(@PathParam("id")identifier:String):String={
    
     dsManager.addNode(new Node(identifier))
+    //return dsManager.getMetaInformation()
     "{\"dbversion\":1}"
   } 
 }
