@@ -10,5 +10,9 @@ class DSManager {
  def addNode(node:Node)={
     nodes.add(node)
   }
+  
+  def getMetaInformation():DataMetaInformation={
+    new DataMetaInformation(nodes.size)
+  }
 }
 

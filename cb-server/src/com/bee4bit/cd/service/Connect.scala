@@ -6,6 +6,7 @@ import javax.ws.rs.PathParam
 import javax.ws.rs.PathParam
 import com.bee4bit.cb.datastoremanager.DSManager
 import com.bee4bit.cb.node.Node
+import com.bee4bit.cb.datastoremanager.DataMetaInformation
 
 @Path("connect")
 class Connect {
@@ -15,10 +16,20 @@ class Connect {
   @Path("login/{id}")
   @GET
   @Produces(value=Array("application/json"))
-  def nodeSubscribe(@PathParam("id")identifier:String):String={
+  def nodeSubscribe(@PathParam("id")identifier:String):DataMetaInformation={
    
     dsManager.addNode(new Node(identifier))
-    //return dsManager.getMetaInformation()
-    "{\"dbversion\":1}"
+    return dsManager.getMetaInformation()
+    
+  } 
+  
+  
+    @Path("dsinfo")
+  @GET
+  @Produces(value=Array("application/json"))
+  def nodeSubscribe():DataMetaInformation={
+   
+    return dsManager.getMetaInformation()
+    
   } 
 }
