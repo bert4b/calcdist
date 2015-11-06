@@ -1,6 +1,6 @@
 package com.bee4bit.cb.node
 
-class NodeMetaInformation {
+class NodeSignalInformation {
   var signal:String="";
   def getSignal():String={
     signal
