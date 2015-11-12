@@ -110,7 +110,6 @@ function start(){
 			  const article = response.body().data();
 				writeToConsoleScreen(article);
 		});
-		
 	
 		resource.one('login',generateGuid()).get().then(function(response) {
 			
@@ -122,9 +121,6 @@ function start(){
 			}
 		   
 		});
-		
-		
-		
 	
 		
 		/*
