@@ -103,7 +103,6 @@ function start(){
 	require(['node_modules/restful.js/dist/restful.standalone.js','node_modules/socket.io-p2p/socketiop2p.min.js','node_modules/socket.io/node_modules/socket.io-client/socket.io.js','node_modules/simple-peer/simplepeer.min.js'],function(restful,socketiop2p,socketioclient,simplepeer){
 		
 		
-		
 		var resource = restful('http://localhost:9080/cb-server/rest/connect', fetchBackend(fetch));
 		resource.custom('dsinfo').get().then(function(response){
 			writeToConsoleScreen(response);
