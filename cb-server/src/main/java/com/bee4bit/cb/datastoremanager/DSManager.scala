@@ -12,15 +12,26 @@ class DSManager {
   val clusters:ListBuffer[NodeCluster]=new ListBuffer()
   val nodeClusters:Map[NodeCluster,Node]=new HashMap()
  
+ 
+  
  def addNode(node:Node)={
+    
+   
     var cluster:NodeCluster=null;
     if (nodes.size%clusterSize==0){
-      cluster=new NodeCluster()
+      cluster=new NodeCluster(clusterSize,clusters.size*(clusterSize-1),clusters.size*clusterSize)
       clusters+=cluster
     }else{
-      //Logic to determine where the node should in some cluster
-     
+      var cls=nodeClusters.keys groupBy (_.start)
+      var nodeClusterO:Option[Iterable[NodeCluster]] =cls.get(node.internalId.intValue()-(node.internalId.intValue()%clusterSize))
+      if (nodeClusterO.isDefined){
+        var theNodeCluster=nodeClusterO.get.head
+        nodeClusters.put(theNodeCluster,node)
+      }
     }
+
+      //Logic to determine where the node should in some cluster
+        
 
     nodes.put(node.id,node);
   }
