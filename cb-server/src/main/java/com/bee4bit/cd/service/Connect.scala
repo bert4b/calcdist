@@ -15,51 +15,48 @@ import com.bee4bit.cb.datastoremanager.DataMetaInformation
 
 @Path("connect")
 class Connect {
-  
-  val dsManager:DSManager=new DSManager()
-  
+
+  val dsManager: DSManager = new DSManager()
+
   @Path("login/{id}")
   @GET
-  @Produces(value=Array("application/json"))
-  def nodeSubscribe(@PathParam("id")identifier:String):DataMetaInformation={
-   
-    dsManager.addNode(new Node(identifier,new NodeMetaInformation()))
+  @Produces(value = Array("application/json"))
+  def nodeSubscribe(@PathParam("id") identifier: String): DataMetaInformation = {
+
+    dsManager.addNode(new Node(identifier, new NodeMetaInformation()))
     return dsManager.getMetaInformation()
-    
-  } 
-  
-  
-    @Path("dsinfo")
+
+  }
+
+  @Path("dsinfo")
   @GET
-  @Produces(value=Array("application/json"))
-  def nodeSubscribe():DataMetaInformation={
-   
+  @Produces(value = Array("application/json"))
+  def nodeSubscribe(): DataMetaInformation = {
+
     return dsManager.getMetaInformation()
-    
-  } 
-    
-      @Path("signalmsg/{id}")
-  @GET
-  //@Consumes(value=Array("application/json"))
-  @Produces(value=Array("application/json"))
-  def nodeSignalMaster(@PathParam("id")id:String):NodeSignalInformation={
+
+  }
+
+  @Path("signalmsg/{id}")
+  @GET //@Consumes(value=Array("application/json"))
+  @Produces(value = Array("application/json"))
+  def nodeSignalMaster(@PathParam("id") id: String): NodeSignalInformation = {
     System.out.println(id)
     return new NodeSignalInformation();
-    
-  } 
-     
+
+  }
+
   @Path("signalmsg/{id}")
   @PUT
-  @Consumes(value=Array("application/json"))
-   //@Produces(value=Array("application/json"))
-  def nodeGetSignal(@PathParam("id")id:String,signal:NodeSignalInformation):String={
-    System.out.println("id:"+id)
+  @Consumes(value = Array("application/json")) //@Produces(value=Array("application/json"))
+  def nodeGetSignal(@PathParam("id") id: String, signal: NodeSignalInformation): String = {
+    System.out.println("id:" + id)
     System.out.println(signal.getSignal())
-    var  node=dsManager.getNode(id);
-    if (node.isDefined){
+    var node = dsManager.getNode(id);
+    if (node.isDefined) {
       node.get.setNodeSignalInformation(signal);
     }
     return "{\"signal\": \"ok\"}"
-    
-  } 
+
+  }
 }
