@@ -8,33 +8,32 @@ import javax.websocket.Session
 import javax.websocket.MessageHandler.Whole
 @ServerEndpoint("/socket.io")
 class WebSocketServer {
-  
-    @OnOpen
-        def open(session:Session) {
-      session.addMessageHandler(FooImpl)
-      println(session);
-    }
 
-    @OnClose
-        def close(session:Session) {
-    }
+  @OnOpen
+  def open(session: Session) {
+    session.addMessageHandler(FooImpl)
+    println(session);
+  }
 
-    @OnError
-        def onError( error:Throwable) {
-      println(error);
-    }
+  @OnClose
+  def close(session: Session) {
+  }
 
-    @OnMessage
-        def handleMessage( message:String,  session:Session) {
-      println(session.getId())
-       println(message)
-    }
-    
-    
+  @OnError
+  def onError(error: Throwable) {
+    println(error);
+  }
+
+  @OnMessage
+  def handleMessage(message: String, session: Session) {
+    println(session.getId())
+    println(message)
+  }
+
 }
 
-object FooImpl extends javax.websocket.MessageHandler.Whole[String]{
- override def onMessage(message:String):Unit={
-          println(message);
-        }
+object FooImpl extends javax.websocket.MessageHandler.Whole[String] {
+  override def onMessage(message: String): Unit = {
+    println(message);
+  }
 }
